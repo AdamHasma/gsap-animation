@@ -16,7 +16,7 @@
 }
 body {
   background-color: #FAFAFA;
-  overflow: none;
+  overflow: hidden;
   font-family: Pier Sans;
 }
 
@@ -56,7 +56,6 @@ img {
 }
 
 .container {
-  overflow: none;
   height: 100vh;
   width: 100%;
   display: flex;
@@ -65,7 +64,6 @@ img {
 }
 
 .pic-container {
-  overflow: none;
   width: 496px;
   height: 796px;
   align-self: center;
@@ -102,6 +100,7 @@ img {
   }
 
   .pic-container {
+    position: absolute;
     padding: 0px 20px;
     width: 100%;
     height: 189px;
