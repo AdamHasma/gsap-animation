@@ -1,69 +1,51 @@
 const mobile = window.matchMedia('(max-width: 480px)')
 const desktop = window.matchMedia('(min-width: 481px)')
+const resetButton = document.getElementById('reset')
+const button = document.querySelector('.button')
 
-if (mobile.matches) {
-  gsap.from("h1", {
-    ease: "power4",
-    opacity: 0,
-    duration: 1,
-    y: -50,
-    delay: .1
-  })
-
-  gsap.from("p", {
-    ease: "power4",
-    opacity: 0,
-    duration: 1,
-    y: -50,
-    delay: .3
-  })
-
-  gsap.from("button", {
-    ease: "power4",
-    opacity: 0,
-    duration: 1,
-    y: 50,
-    delay: .5
-  })
-
-  gsap.from(".pic-container", {
-    ease: "power4",
-    opacity: 0,
-    duration: 1,
-    y: 50,
-    delay: .5
-  })
-}
-
-if (desktop.matches) {
-gsap.from("h1", {
-  ease: "power4",
-  opacity: 0,
-  duration: 1,
-  y: -50,
-  delay: .1
+let tl = gsap.timeline({
+  defaults: {
+    duration: 1.5,
+    autoAlpha: 0,
+    ease: "power4"
+  }
 })
 
-gsap.from("p", {
-  ease: "power4",
-  opacity: 0,
-  duration: 1,
-  y: -50,
-  delay: .3
+document.querySelector(".button").addEventListener("click", () => {
+  tl.reversed() ? tl.play() : tl.reverse();
 })
 
-gsap.from("button", {
-  ease: "power4",
-  opacity: 0,
-  duration: 1,
-  y: -50,
-  delay: .5
-})
+document.addEventListener("DOMContentLoaded", function() {
+  if (desktop.matches) {
+    tl.from("h1", {
+        y: -50
+      })
+      .from("p", {
+        y: -50,
+      }, "-=1.2")
+      .from(".button", {
+        y: -50
+      }, "-=1.2")
+      .from(".pic-container", {
+        width: 0,
+        left: 400,
+        duration: 2
+      }, "-=1.6")
+  }
 
-gsap.from(".pic-container", {
-  ease: "power4",
-  duration: 2,
-  width: 0,
-  delay: .3
-})
-}
+  if (mobile.matches) {
+    tl.from("h1", {
+        y: -50
+      })
+      .from("p", {
+        y: -50,
+      }, "-=1.2")
+      .from(".button", {
+        y: 50
+      }, "-=1.2")
+      .from(".pic-container", {
+        y: 50,
+        duration: 2
+      }, "-=1.6")
+  }
+});
